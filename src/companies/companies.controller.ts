@@ -13,30 +13,25 @@ import { UpdateCompanyDto } from './dto/update-company.dto';
 
 @Controller('companies')
 export class CompaniesController {
-  constructor(private readonly companiesService: CompaniesService) {}
+  constructor(private readonly service: CompaniesService) {}
 
-  @Post()
-  create(@Body() createCompanyDto: CreateCompanyDto) {
-    return this.companiesService.create(createCompanyDto);
+  @Get() findAll() {
+    return this.service.findAll();
   }
 
-  @Get()
-  findAll() {
-    return this.companiesService.findAll();
+  @Get(':id') findOne(@Param('id') id: string) {
+    return this.service.findOne(+id);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.companiesService.findOne(+id);
+  @Post() create(@Body() dto: CreateCompanyDto) {
+    return this.service.create(dto);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCompanyDto: UpdateCompanyDto) {
-    return this.companiesService.update(+id, updateCompanyDto);
+  @Patch(':id') update(@Param('id') id: string, @Body() dto: UpdateCompanyDto) {
+    return this.service.update(+id, dto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.companiesService.remove(+id);
+  @Delete(':id') remove(@Param('id') id: string) {
+    return this.service.remove(+id);
   }
 }
