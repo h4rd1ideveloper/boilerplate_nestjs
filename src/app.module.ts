@@ -10,12 +10,12 @@ import { Product } from './products/entities/product.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'test',
+      type: 'postgres',
+      host: 'db',
+      port: 5432,
+      username: 'postgres',
+      password: 'postgres',
+      database: 'nest_crud',
       entities: [Company, Product],
       synchronize: true,
     }),
